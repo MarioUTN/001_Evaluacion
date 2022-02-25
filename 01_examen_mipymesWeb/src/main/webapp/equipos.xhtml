@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
+	<h:form id="form-menu">
+		<p:menubar style="background-color: #5DADE2;">
+			<p:menuitem value="Regresar" icon="fa fa-arrow-circle-left"
+				outcome="indexexamen?faces-redirect=true">
+				<f:param name="i" value="0" />
+			</p:menuitem>
+			<p:menuitem value="Inicio" outcome="indexexamen" icon="fa fa-home">
+				<f:param name="i" value="1" />
+			</p:menuitem>
+			<p:menuitem value="Inicio" outcome="equipos" icon="fa fa-ball">
+				<f:param name="i" value="1" />
+			</p:menuitem>
+
+		</p:menubar>
+	</h:form>
+	<h:form id="eq">
+		<p:panel header="Lista de equipos">
+			<div align="center">
+				<p:panelGrid columns="1" styleClass="ui-noborder">
+					<p:commandButton value="Actualizar" icon="fa fa-refresh"
+						actionListener="#{beanExamen.actionListenerActualizar()}" update="eq"></p:commandButton>
+				</p:panelGrid>
+				<p:dataTable value="#{beanExamen.listaEquipos}" id="d"
+					stripedRows="true" var="equipo" paginator="true" reflow="true"
+					rows="7" style="font-size: 12px" paginatorPosition="bottom"
+					rowIndexVar="index">
+					<p:column headerText="COD" style="width:80px">
+						<h:outputText value="#{equipo.idEquipo}" />
+					</p:column>
+					<p:column headerText="NOMBRES" style="width:150px">
+						<h:outputText value="#{equipo.nombreEquipo}" />
+					</p:column>
+
+					<p:column headerText="FECHA" style="width: 150px">
+						<h:outputText value="#{equipo.fecha}" />
+					</p:column>
+					<p:column headerText="VALOR EQUIPO" style="width: 50px">
+						<h:outputText value="#{equipo.valorTotal}" />
+					</p:column>
+
+
+				</p:dataTable>
+			</div>
+		</p:panel>
+	</h:form>
+</body>
+</html>
